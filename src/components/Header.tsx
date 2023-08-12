@@ -1,9 +1,11 @@
 'use client'
-import Image from 'next/image'
+import Image from 'next/image';
 import { useState, useEffect } from 'react';
+import { Modal, Button } from '@/components/UI';
 
 const Header = () => {
     const [isScrolled, setIsScrolled] = useState(false);
+    const [isModalOpen, setIsModalOpen] = useState(false);
 
     useEffect(() => {
         const handleScroll = () => {
@@ -27,9 +29,14 @@ const Header = () => {
                         <Image src={`${isScrolled ? "/logo-black.png" : "/logo-white.png"}`} width={50} height={50} alt="logo" />
                         <h1 className={`text-2xl font-semibold p-2 ${!isScrolled && "text-white"}`}>Sparta</h1>
                     </span>
-                    <button className="text-white text-md bg-[#5d50b4] py-3 px-5 rounded-3xl">
+                    <Button onClick={() => setIsModalOpen(true)}>
                         Create Gallery
-                    </button>
+                    </Button>
+                    <Modal isOpen={isModalOpen} onClose={() => setIsModalOpen(false)}>
+                        <div className="justify-center text-center">
+                            daa
+                        </div>
+                    </Modal>
                 </div>
             </header>
         </div>
