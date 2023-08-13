@@ -2,6 +2,9 @@
 import Image from 'next/image';
 import { useState, useEffect } from 'react';
 import { Modal, Button } from '@/components/UI';
+import { ConnectButton } from '@rainbow-me/rainbowkit';
+import { getAccount } from '@wagmi/core'
+import Template from './Template';
 
 const Header = () => {
     const [isScrolled, setIsScrolled] = useState(false);
@@ -9,15 +12,14 @@ const Header = () => {
 
     useEffect(() => {
         const handleScroll = () => {
-        // You can adjust this value based on the height of your hero banner
-        const offset = window.scrollY > window.innerHeight * 0.5;
-        setIsScrolled(offset);
+            const offset = window.scrollY > window.innerHeight * 0.5;
+            setIsScrolled(offset);
         };
 
         window.addEventListener('scroll', handleScroll);
 
         return () => {
-        window.removeEventListener('scroll', handleScroll);
+            window.removeEventListener('scroll', handleScroll);
         };
     }, []);
 
@@ -33,8 +35,12 @@ const Header = () => {
                         Create Gallery
                     </Button>
                     <Modal isOpen={isModalOpen} onClose={() => setIsModalOpen(false)}>
-                        <div className="justify-center text-center">
-                            daa
+                        <div className="justify-center text-center mx-auto">
+                            {
+                                getAccount().isConnected ? (
+                                    <Template />
+                                ) : <ConnectButton />
+                            }
                         </div>
                     </Modal>
                 </div>
