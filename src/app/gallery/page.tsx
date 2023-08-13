@@ -16,8 +16,8 @@ export default function Gallery() {
     })
 
     useEffect(() => {
-        const contract = searchParams.get('address');
-        const chain = searchParams.get('chain');
+        const contract = searchParams?.get('address');
+        const chain = searchParams?.get('chain');
         if (contract && chain) {    
             getNFTDetails(contract as string, chain as string)
                 .then((res) => {
