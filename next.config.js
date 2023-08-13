@@ -13,6 +13,7 @@ const nextConfig = {
           "nftmedia.parallelnft.com",
           "oayc.io",
           "arweave.net",
+          "i.seadn.io"
         ],
     }
 }

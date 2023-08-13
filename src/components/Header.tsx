@@ -12,7 +12,7 @@ const Header = () => {
 
     useEffect(() => {
         const handleScroll = () => {
-            const offset = window.scrollY > window.innerHeight * 0.5;
+            const offset = window.scrollY > window.innerHeight * 0.1;
             setIsScrolled(offset);
         };
 
@@ -29,7 +29,7 @@ const Header = () => {
                 <div className="container mx-auto py-2 flex justify-between items-center">
                     <span className="flex">
                         <Image src={`${isScrolled ? "/logo-black.png" : "/logo-white.png"}`} width={50} height={50} alt="logo" />
-                        <h1 className={`text-2xl font-semibold p-2 ${!isScrolled && "text-white"}`}>Sparta</h1>
+                        <h1 className={`text-2xl font-semibold p-2 ${!isScrolled ? "text-white" : 'text-black'}`}>Sparta</h1>
                     </span>
                     <Button onClick={() => setIsModalOpen(true)}>
                         Create Gallery
