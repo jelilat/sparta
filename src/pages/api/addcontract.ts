@@ -3,17 +3,13 @@ import { NextApiRequest, NextApiResponse } from 'next';
 
 // Connect to PostgreSQL
 const pool = new Pool({
-  user: process.env.POSTGRES_USER,
-  host: process.env.POSTGRES_HOST,
-  database: process.env.POSTGRES_DBNAME,
-  password: process.env.POSTGRES_PASSWORD,
-  port: parseInt(process.env.POSTGRES_PORT!),
+  connectionString: process.env.POSTGRES_URL + "?sslmode=require",
 });
 
 const handler = async (req: NextApiRequest, res: NextApiResponse) => {
-    const { address, chain, name } = req.body;
+    const { address, chain, name, image } = req.body;
     try {
-      await pool.query('INSERT INTO contracts (address, chain, name) VALUES ($1, $2, $3)', [address, chain, name]);
+      await pool.query('INSERT INTO contracts (address, chain, name, image) VALUES ($1, $2, $3, $4)', [address, chain, name, image]);
       res.status(201).send('Contract added successfully!');
     } catch (err) {
       console.error(err);

@@ -16,12 +16,12 @@ const Collections = ({ collections }: CollectionsProps) => {
             <div key={index} className="flex flex-col justify-center items-center m-4">
               <div className="image-container">
                 <Image src={collection.image}
-                  alt={collection.title}
+                  alt={collection.name}
                   className="rounded-xl image-content"
                   layout="fill" />
               </div>
               <h1 className="font-bold text-md my-3">
-                {collection.title}
+                {collection.name}
               </h1>
               <Button onClick={async () => {
               }}>

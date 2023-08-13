@@ -3,6 +3,7 @@ import Image from "next/image"
 import { useState } from 'react'
 import { Button, Input } from '@/components/UI'
 import { useRouter } from "next/navigation"
+import { getProfileImageUrl } from '@/components/Utils/nftDetails';
 
 const Template = () => {
     const router = useRouter();
@@ -22,13 +23,14 @@ const Template = () => {
     ]
 
     const addContractToDb = async () => {
+        const image = await getProfileImageUrl(address, chain);
         try {
           const response = await fetch('/api/addcontract', {
             method: 'POST',
             headers: {
               'Content-Type': 'application/json',
             },
-            body: JSON.stringify({ address, chain, name }),
+            body: JSON.stringify({ address, chain, name, image }),
           });
     
           if (response.status === 201) {
