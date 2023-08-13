@@ -8,7 +8,7 @@ const pool = new Pool({
 
 const handler =  async (req: NextApiRequest, res: NextApiResponse) => {
     try {
-      const result = await pool.query('SELECT address, chain, name FROM contracts LIMIT 10');
+      const result = await pool.query('SELECT address, chain, name, image FROM contracts LIMIT 10');
       res.status(200).json(result.rows);
     } catch (err) {
       console.error(err);
